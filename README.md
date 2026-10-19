@@ -2,7 +2,7 @@
 
 **GDG Challenge 1 – Task 2:** A responsive scientific calculator built with HTML, CSS, and vanilla JavaScript, based on a Figma design.
 
-- **Live Demo:** [Try the calculator](https://wchibout.github.io/gdg-calculator/)
+**Live Demo:** https://wchibout.github.io/gdg-calculator/
 - **Figma Design:** [Calculator App UI Design](https://www.figma.com/design/gydXtggAWOeogtbXclIf3m/Calculator-App-Ui-Design-Download-Free--Community-)
 - **Author:** CHIBOT Wahb
 
