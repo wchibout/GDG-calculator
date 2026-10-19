@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#e8ecef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11161c" media="(prefers-color-scheme: dark)">
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="calc">
+    <header class="top">
+      <span>Calculator</span>
+      <button id="theme" type="button" aria-label="Switch light or dark theme"></button>
+    </header>
+
+    <section class="screen" aria-live="polite">
+      <div id="sub"></div>
+      <div id="main">0</div>
+    </section>
+
+    <div class="pad sci">
+      <button data-i="sin(">sin</button>
+      <button data-i="cos(">cos</button>
+      <button data-i="tan(">tan</button>
+      <button data-i="ln(">ln</button>
+      <button data-i="log(">log</button>
+      <button data-i="√(">√</button>
+      <button data-i="^2">x²</button>
+      <button data-i="^">xʸ</button>
+      <button data-i="^(−1)">1/x</button>
+      <button data-i="π">π</button>
+      <button data-i="e">e</button>
+      <button data-i="!">n!</button>
+      <button data-i="(">(</button>
+      <button data-i=")">)</button>
+      <button data-a="deg" id="deg" aria-label="Toggle degrees and radians">DEG</button>
+    </div>
+
+    <div class="pad keys">
+      <button class="clr" data-a="ac">AC</button>
+      <button data-a="del" aria-label="Backspace">⌫</button>
+      <button class="op" data-i="%">%</button>
+      <button class="op" data-i="÷">÷</button>
+      <button data-i="7">7</button>
+      <button data-i="8">8</button>
+      <button data-i="9">9</button>
+      <button class="op" data-i="×">×</button>
+      <button data-i="4">4</button>
+      <button data-i="5">5</button>
+      <button data-i="6">6</button>
+      <button class="op" data-i="−">−</button>
+      <button data-i="1">1</button>
+      <button data-i="2">2</button>
+      <button data-i="3">3</button>
+      <button class="op" data-i="+">+</button>
+      <button data-a="neg">±</button>
+      <button data-i="0">0</button>
+      <button data-i=".">.</button>
+      <button class="eq" data-a="eq">=</button>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* Theme: follows the device (light/dark) unless the user picks one with the toggle. */
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#e8ecef, #11161c);
+  --card: light-dark(#f8f9fa, #1a2129);
+  --key: light-dark(#ffffff, #232c36);
+  --fn: light-dark(#e3e8ec, #2b3541);
+  --text: light-dark(#161b21, #eef2f5);
+  --mute: light-dark(#6b7782, #8794a1);
+  --acc: light-dark(#0d7f78, #3fd2c2);
+  --on-acc: light-dark(#ffffff, #07211e);
+  --danger: light-dark(#c8383f, #ff7a80);
+  --shadow: light-dark(0 18px 48px #1d2b3a1f, 0 18px 48px #0009);
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+           max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: var(--bg);
+  color: var(--text);
+  font: 500 1.05rem/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc {
+  width: min(100%, 420px);
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  grid-template-areas: "top" "screen" "sci" "keys";
+}
+.top    { grid-area: top; display: flex; justify-content: space-between; align-items: center; color: var(--mute); font-size: .95rem; }
+.screen { grid-area: screen; }
+.sci    { grid-area: sci; }
+.keys   { grid-area: keys; }
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  border-radius: 16px;
+  background: var(--key);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .08s, background-color .15s;
+}
+button:active { transform: scale(.94); }
+button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+@media (hover: hover) { button:hover { background: var(--fn); } }
+
+#theme { width: 40px; height: 40px; border-radius: 50%; background: var(--fn); font-size: 1.1rem; }
+
+.screen {
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 6px 8px;
+  text-align: right;
+}
+#sub  { min-height: 1.2em; color: var(--mute); font-size: 1rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+#main { font-size: clamp(2.1rem, 10vw, 3rem); font-weight: 300; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+
+.pad { display: grid; gap: 10px; }
+.sci  { grid-template-columns: repeat(5, 1fr); grid-auto-rows: minmax(44px, 1fr); }
+.keys { grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(56px, 1fr); }
+.sci button  { background: var(--fn); font-size: .95rem; border-radius: 14px; }
+.keys button { font-size: 1.4rem; }
+.op  { background: var(--fn); color: var(--acc); }
+.clr { color: var(--danger); }
+.eq  { background: var(--acc); color: var(--on-acc); font-weight: 700; }
+@media (hover: hover) { .eq:hover { background: var(--acc); filter: brightness(1.08); } }
+
+/* Tablets, desktops and landscape phones: scientific keys sit beside the main keys. */
+@media (min-width: 600px) {
+  .calc {
+    width: min(100%, 720px);
+    padding: 22px;
+    grid-template-columns: 1fr 1.3fr;
+    grid-template-areas: "top top" "screen screen" "sci keys";
+  }
+  .sci  { grid-template-columns: repeat(3, 1fr); }
+  .screen { min-height: 130px; }
+}
+
+/* Short screens (landscape phones): tighter keys so everything fits. */
+@media (max-height: 560px) {
+  .sci  { grid-auto-rows: minmax(34px, 1fr); }
+  .keys { grid-auto-rows: minmax(40px, 1fr); }
+  .screen { min-height: 70px; }
+  #main { font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { button { transition: none; } }
